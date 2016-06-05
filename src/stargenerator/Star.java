@@ -45,9 +45,18 @@ public class Star extends Rectangle{
     void update(){
         xPos += xVeloc;
         yPos += yVeloc;
-        setTranslateX(xPos);
-        setTranslateY(yPos);
+        relocate(xPos, yPos);
+        if(isOutOfScreen()){
+            Main.getRoot().getChildren().remove(this);
+        }
     }
     
+    private boolean isOutOfScreen(){
+        if(xPos <= 0 - getWidth() || xPos > Main.getScene().getWidth() || yPos <= 0 - getHeight() || yPos > Main.getScene().getHeight()){
+            return true;
+        } else{
+            return false;
+        }
+    }
     
 }

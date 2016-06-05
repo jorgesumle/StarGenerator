@@ -38,14 +38,25 @@ import javafx.util.Duration;
  * @author jorge
  */
 public class Main extends Application {
-    private Scene scene;
-    private Pane root;
+    private static Scene scene;
+    private static Pane root;
+
+    static Scene getScene() {
+        return scene;
+    }
+
+    public static Pane getRoot() {
+        return root;
+    }
+    
     @Override
     public void start(Stage primaryStage) {            
         root = new Pane();
+        final short INITIAL_WIDTH = 400, INITIAL_HEIGHT = 400;
+        root.setPrefSize(INITIAL_WIDTH, INITIAL_HEIGHT);
         root.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
 
-        scene = new Scene(root, 300, 250);
+        scene = new Scene(root, INITIAL_WIDTH, INITIAL_HEIGHT);
         
         primaryStage.setTitle("Star generator");
         primaryStage.setScene(scene);
@@ -67,7 +78,7 @@ public class Main extends Application {
         Random random = new Random();
         Timeline starTimeline = new Timeline();
         starTimeline.getKeyFrames().add(new KeyFrame(Duration.millis(3), (ActionEvent e) -> {
-            Star star = new Star(scene.getWidth() / 4, scene.getHeight() / 4, random.nextDouble() * 11 - 5, random.nextDouble() * 11 - 5);
+            Star star = new Star(scene.getWidth() / 2, scene.getHeight() / 2, random.nextDouble() * 11 - 5, random.nextDouble() * 11 - 5);
             root.getChildren().add(star);
             stars.add(star);
         }));
