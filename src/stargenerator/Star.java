@@ -52,11 +52,7 @@ public class Star extends Rectangle{
     }
     
     private boolean isOutOfScreen(){
-        if(xPos <= 0 - getWidth() || xPos > Main.getScene().getWidth() || yPos <= 0 - getHeight() || yPos > Main.getScene().getHeight()){
-            return true;
-        } else{
-            return false;
-        }
+        return xPos <= 0 - getWidth() || xPos > Main.getScene().getWidth() || yPos <= 0 - getHeight() || yPos > Main.getScene().getHeight();
     }
     
 }
